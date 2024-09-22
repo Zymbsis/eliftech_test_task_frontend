@@ -1,5 +1,8 @@
 import { Suspense } from 'react';
 import Header from '../Header/Header.jsx';
+import Loader from '../Loader/Loader.jsx';
+import { Flip, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './SharedLayout.module.css';
 
 const SharedLayout = ({ children }) => {
@@ -9,10 +12,22 @@ const SharedLayout = ({ children }) => {
       <main>
         <section className={css.section}>
           <div className={css.container}>
-            <Suspense fallback='Loading...'>{children}</Suspense>
+            <Suspense fallback={<Loader />}>{children}</Suspense>
           </div>
         </section>
       </main>
+      <ToastContainer
+        position='top-center'
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+        transition={Flip}
+      />
     </>
   );
 };

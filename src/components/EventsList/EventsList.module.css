@@ -1,14 +1,21 @@
+.title {
+  margin-bottom: 36px;
+  font-size: 34px;
+  padding-left: 28px;
+}
+
 .eventsList {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 32px;
+  height: 814px;
 }
 
 .eventsList > li {
   width: calc((100% - 20px) / 2);
   height: 258px;
-  padding: 20px;
+  padding: 30px;
   border-radius: 12px;
   border: 1px solid cadetblue;
   display: flex;

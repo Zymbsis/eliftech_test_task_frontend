@@ -13,7 +13,7 @@ const EventCard = ({ event }) => {
       </div>
       <ul className={css.linkWrapper}>
         <li>
-          <Link to='/registrationPage'>Register</Link>
+          <Link to={`/registrationPage/${_id}`}>Register</Link>
         </li>
         <li>
           <Link to={`/participantsPage/${_id}`}>View</Link>

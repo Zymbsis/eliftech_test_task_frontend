@@ -1,0 +1,30 @@
+.title {
+  margin-bottom: 36px;
+  font-size: 34px;
+  padding-left: 28px;
+}
+
+.participantsList {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.participantsList > li {
+  width: calc((100% - 40px) / 3);
+  height: 128px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid cadetblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.noParticipants {
+  font-size: 36px;
+  width: 650px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 54px;
+}

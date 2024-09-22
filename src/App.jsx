@@ -18,7 +18,7 @@ const App = () => {
           element={<EventsBoardPage />}
         />
         <Route
-          path='/registrationPage'
+          path='/registrationPage/:id'
           element={<EventsRegistrationPage />}
         />
         <Route

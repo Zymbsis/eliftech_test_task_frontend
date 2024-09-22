@@ -1,12 +1,39 @@
+.paginationWrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrowLeft,
+.arrowRight {
+  width: 30px;
+  height: 30px;
+}
+
 .paginationList {
   display: flex;
-  gap: 10px;
 }
 
 .paginationList > li {
   font-size: 20px;
+  position: relative;
+  width: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.paginationList > li.activePage {
-  color: red
+.paginationList > li > button {
+  width: 100%;
+}
+
+.paginationList > li.activePage::after {
+  position: absolute;
+  content: '';
+  width: calc(100% - 10px);
+  height: 2px;
+  background-color: cadetblue;
+  display: block;
+  bottom: -2px;
 }
