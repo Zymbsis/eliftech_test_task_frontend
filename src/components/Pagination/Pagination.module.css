@@ -1,0 +1,12 @@
+.paginationList {
+  display: flex;
+  gap: 10px;
+}
+
+.paginationList > li {
+  font-size: 20px;
+}
+
+.paginationList > li.activePage {
+  color: red
+}

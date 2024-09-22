@@ -1,0 +1,10 @@
+.section {
+  width: 100%;
+  padding: 146px 0 60px;
+}
+
+.container {
+  width: 1440px;
+  padding: 0 128px;
+  margin: 0 auto;
+}

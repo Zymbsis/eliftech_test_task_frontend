@@ -1,0 +1,30 @@
+@import 'node_modules/modern-normalize/modern-normalize.css';
+@import url('./reset.css');
+
+:root {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: normal;
+  color-scheme: light dark;
+  color: var(--primary-font-color);
+  background-color: var(--primary-background-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+:root::-webkit-scrollbar-thumb {
+  background-color: var(--modal-backdrop-color);
+  border-radius: 4px;
+}
+
+:root::-webkit-scrollbar-track {
+  background-color: var(--primary-border-color);
+}
