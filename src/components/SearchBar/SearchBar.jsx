@@ -1,9 +1,11 @@
 import css from './SearchBar.module.css';
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ title, query, setQuery }) => {
   return (
     <div className={css.wrapper}>
-      <h2 className={css.title}>&quot;Awesome Event&quot; participants</h2>
+      <h2 className={css.title}>
+        <span>&quot;{title}&quot;</span> participants
+      </h2>
       <input
         className={css.searchField}
         value={query}

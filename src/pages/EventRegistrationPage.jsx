@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm.jsx';
+import { RegistrationForm } from 'components';
 
 const EventRegistrationPage = () => {
   const { id } = useParams();

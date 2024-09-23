@@ -8,6 +8,13 @@
 .title {
   font-size: 34px;
   padding-left: 28px;
+  max-width: 800px;
+  overflow-wrap: normal;
+}
+
+.title > span {
+  color: cadetblue;
+  text-decoration: underline;
 }
 
 .searchField {

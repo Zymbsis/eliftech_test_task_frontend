@@ -1,12 +1,11 @@
-import { fetchAllEvents } from '../helpers/fetchFunctions.js';
-import { useFetch } from '../helpers/useFetch.js';
-import { useEventContext } from '../helpers/useContext.js';
-import Loader from '../components/Loader/Loader.jsx';
-import SortBar from '../components/SortBar/SortBar.jsx';
-import EventsList from '../components/EventsList/EventsList.jsx';
-import Pagination from '../components/Pagination/Pagination.jsx';
-import ErrorMessage from '../components/ErrorMessage/ErrorMessage.jsx';
-import { formatDate } from '../helpers/formatDate.js';
+import { useFetch, useEventContext, fetchAllEvents, formatDate } from 'helpers';
+import {
+  Loader,
+  SortBar,
+  EventsList,
+  Pagination,
+  ErrorMessage,
+} from 'components';
 
 const EventsBoardPage = () => {
   const currentDate = formatDate(new Date(Date.now()));

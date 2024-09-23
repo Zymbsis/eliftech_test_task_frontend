@@ -1,4 +1,4 @@
-import ParticipantCard from '../ParticipantCard/ParticipantCard.jsx';
+import { ParticipantCard } from 'components';
 import css from './ParticipantsList.module.css';
 
 const ParticipantsList = ({ participantsList }) => {

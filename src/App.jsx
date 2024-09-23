@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-import SharedLayout from './components/SharedLayout/SharedLayout.jsx';
+import { SharedLayout } from 'components';
 
 const EventsBoardPage = lazy(() => import('./pages/EventsBoardPage.jsx'));
 const EventsRegistrationPage = lazy(() =>

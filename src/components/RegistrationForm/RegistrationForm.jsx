@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { addParticipant, registrationSchema } from 'helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SelectInfoSource from '../SelectInfoSource/SelectInfoSource.jsx';
-import DataPicker from '../DataPicker/DataPicker.jsx';
+import { SelectInfoSource, DataPicker } from 'components';
 import css from './RegistrationForm.module.css';
 
 const RegistrationForm = ({ id }) => {

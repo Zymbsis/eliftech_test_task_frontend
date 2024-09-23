@@ -11,6 +11,17 @@
   height: 30px;
 }
 
+.arrowLeft > svg,
+.arrowRight > svg {
+  fill: cadetblue;
+  transition: fill 300ms ease-in;
+}
+
+.arrowLeft:hover > svg,
+.arrowRight:hover > svg {
+  fill: #4A7373;
+}
+
 .paginationList {
   display: flex;
 }
@@ -36,4 +47,9 @@
   background-color: cadetblue;
   display: block;
   bottom: -2px;
+  transition: background-color 300ms ease-in;
+}
+
+.paginationList > li.activePage:hover::after {
+  background-color: #4A7373;
 }

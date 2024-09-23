@@ -1,4 +1,4 @@
-import EventCard from '../EventCard/EventCard.jsx';
+import { EventCard } from 'components';
 import css from './EventsList.module.css';
 
 const EventsList = ({ eventsList, currentDate }) => {

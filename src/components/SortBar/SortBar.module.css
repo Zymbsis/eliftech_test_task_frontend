@@ -10,11 +10,16 @@
 }
 
 .select {
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 52px;
   border-radius: 8px;
   padding: 0 8px;
   font-size: 18px;
   border: 1px solid cadetblue;
   cursor: pointer;
+  transition: border-color 300ms ease-in;
+}
+
+.select:hover {
+  border-color: #4A7373;
 }

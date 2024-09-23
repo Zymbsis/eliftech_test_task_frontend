@@ -21,17 +21,13 @@ export const fetchEventById = async (id) => {
 };
 
 export const addParticipant = async (id, formData) => {
-  const response = await fetch(
-    // `http://localhost:3000/events/${id}`,
-    `${BASE_URL}/events/${id}`,
-    {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
+  const response = await fetch(`${BASE_URL}/events/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  );
+    body: JSON.stringify(formData),
+  });
   if (!response.ok) {
     throw new Error(
       response.status === 409

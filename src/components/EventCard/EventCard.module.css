@@ -46,6 +46,11 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   color: cadetblue;
+  transition: color 300ms ease-in;
+}
+
+.link:hover {
+  color: #4A7373;
 }
 
 .link::after {
@@ -61,7 +66,7 @@
 }
 
 .link:hover::after {
-  background-color: cadetblue;
+  background-color: #4A7373;
   left: 50%;
   transform: translateX(-50%)
 }
@@ -73,7 +78,7 @@
   width: 170px;
   padding: 4px;
   font-size: 12px;
-  border: 1px solid cadetblue;
+  border: 1px solid #4A7373;
   border-radius: 4px;
   top: -16px;
   left: 50px;

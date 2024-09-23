@@ -7,6 +7,11 @@
   top: 0;
   left: 0;
   background-color: #fff;
+  transition: border-color 300ms ease-in;
+}
+
+.header:hover {
+  border-color: #4A7373;
 }
 
 .navigation {
@@ -28,6 +33,11 @@
   padding-right: 72px;
   padding-left: 20px;
   align-content: center;
+  transition: color 300ms ease-in;
+}
+
+.navLink:hover {
+  color: #4A7373;
 }
 
 .navLink::before {
@@ -39,11 +49,15 @@
   background-color: transparent;
   bottom: 0;
   left: 50%;
-  transition: all 500ms ease-in-out;
+  transition: background-color 300ms ease-in, left 300ms ease-in;
 }
 
-.navLink:hover::before,
 .navLink.activeLink::before {
   background-color: cadetblue;
+  left: 0;
+}
+
+.navLink:hover:before {
+  background-color: #4A7373;
   left: 0;
 }
