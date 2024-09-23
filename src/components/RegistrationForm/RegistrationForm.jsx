@@ -4,18 +4,25 @@ import { toast } from 'react-toastify';
 import { addParticipant } from '../../services/fetchFunction.js';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registrationSchema } from './validationSchema.js';
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/material_green.css';
+import { useState } from 'react';
 
 const RegistrationForm = ({ id }) => {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registrationSchema),
   });
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const onSubmit = async (formData) => {
+    console.log(formData);
+
     try {
       await addParticipant(id, {
         ...formData,
@@ -23,6 +30,7 @@ const RegistrationForm = ({ id }) => {
       });
       toast.success('You have successfully registered for the event!');
       reset();
+      setSelectedDate(null);
     } catch (error) {
       toast.error(error.message);
     }
@@ -56,10 +64,19 @@ const RegistrationForm = ({ id }) => {
         </label>
         <label>
           Date of birth
-          <input
-            type='text'
-            {...register('dateOfBirth')}
-          />
+          <Flatpickr
+            options={{ dateFormat: 'd-m-Y' }}
+            value={selectedDate}
+            onChange={(_, date) => {
+              setValue('dateOfBirth', date);
+              setSelectedDate(date);
+            }}>
+            <input
+              type='text'
+              value={selectedDate}
+              {...register('dateOfBirth')}
+            />
+          </Flatpickr>
           {errors.dateOfBirth && (
             <span className={css.errorMessage}>
               {errors.dateOfBirth.message}

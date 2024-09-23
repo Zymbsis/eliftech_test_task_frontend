@@ -1,7 +1,7 @@
 import { optionList } from './optionsList.js';
-import css from './FilterBar.module.css';
+import css from './SortBar.module.css';
 
-const FilterBar = ({ setFilters, setCurrentPage, filters }) => {
+const SortBar = ({ setFilters, setCurrentPage, filters }) => {
   const onChange = ({ target: { value } }) => {
     setFilters(JSON.parse(value));
     setCurrentPage(1);
@@ -25,4 +25,4 @@ const FilterBar = ({ setFilters, setCurrentPage, filters }) => {
   );
 };
 
-export default FilterBar;
+export default SortBar;

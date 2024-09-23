@@ -9,7 +9,10 @@ const EventsList = ({ eventsList }) => {
     <ul className={css.eventsList}>
       {eventsList.map((event) => (
         <li key={event._id}>
-          <EventCard event={event} currentDate={currentDate} />
+          <EventCard
+            event={event}
+            currentDate={currentDate}
+          />
         </li>
       ))}
     </ul>
