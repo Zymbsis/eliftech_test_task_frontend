@@ -1,7 +1,9 @@
 const BASE_URL = 'https://eliftechtesttaskbackend-production.up.railway.app';
 
-export const fetchAllEvents = async (page) => {
-  const response = await fetch(`${BASE_URL}/events?perPage=6&page=${page}`);
+export const fetchAllEvents = async (page, sortBy, sortOrder) => {
+  const response = await fetch(
+    `${BASE_URL}/events?perPage=6&page=${page}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
+  );
   if (!response.ok) {
     throw new Error('Something went wrong');
   }

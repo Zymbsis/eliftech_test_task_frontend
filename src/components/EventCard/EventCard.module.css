@@ -1,4 +1,85 @@
+.contentWrapper {
+  position: relative;
+}
+
+.title {
+  max-width: 400px;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.organizer {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.organizer > span {
+  text-decoration: underline;
+}
+
+.description {
+  font-size: 16px;
+}
+
+.date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  font-size: 18px;
+}
+
 .linkWrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.link {
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 25px;
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: cadetblue;
+}
+
+.link::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: transparent;
+  bottom: 0;
+  left: 0;
+  transition: all 300ms ease-in;
+}
+
+.link:hover::after {
+  background-color: cadetblue;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.inactiveLink:hover::before {
+  content: 'This event is already over.';
+  display: block;
+  position: absolute;
+  width: 170px;
+  padding: 4px;
+  font-size: 12px;
+  border: 1px solid cadetblue;
+  border-radius: 4px;
+  top: -16px;
+  left: 50px;
+  color: #191A15
+}
+
+.link.inactiveLink:hover::after {
+  background-color: transparent;
 }

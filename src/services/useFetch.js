@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const useFetch = (fetchFunction, ...rest) => {
   const [serverData, setServerData] = useState([]);
@@ -6,6 +7,7 @@ export const useFetch = (fetchFunction, ...rest) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    toast.dismiss();
     (async () => {
       try {
         setIsError(false);
@@ -19,6 +21,7 @@ export const useFetch = (fetchFunction, ...rest) => {
         console.log(error);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchFunction, ...rest]);
 
   return [serverData, isLoading, isError];

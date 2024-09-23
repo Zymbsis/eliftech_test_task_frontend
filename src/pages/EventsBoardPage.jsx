@@ -5,12 +5,21 @@ import ErrorMessage from '../components/ErrorMessage/ErrorMessage.jsx';
 import { fetchAllEvents } from '../services/fetchFunction.js';
 import { useFetch } from '../services/useFetch.js';
 import { useState } from 'react';
+import FilterBar from '../components/FilterBar/FilterBar.jsx';
+import css from './EventPages.module.css';
 
 const EventsBoardPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({
+    sortBy: 'event_date',
+    sortOrder: 'desc',
+  });
+
   const [{ data, ...rest }, isLoading, isError] = useFetch(
     fetchAllEvents,
     currentPage,
+    filters.sortBy,
+    filters.sortOrder,
   );
 
   const getNextPage = () => {
@@ -30,6 +39,14 @@ const EventsBoardPage = () => {
     if (data?.length) {
       return (
         <>
+          <div className={css.wrapper}>
+            <h2 className={css.title}>Events</h2>
+            <FilterBar
+              setFilters={setFilters}
+              setCurrentPage={setCurrentPage}
+              filters={filters}
+            />
+          </div>
           <EventsList eventsList={data} />
           <Pagination
             paginationData={rest}
