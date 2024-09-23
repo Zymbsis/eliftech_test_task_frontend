@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.title {
+  font-size: 34px;
+  padding-left: 28px;
+}
+
+.searchField {
+  width: 350px;
+  height: 52px;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid cadetblue;
+}

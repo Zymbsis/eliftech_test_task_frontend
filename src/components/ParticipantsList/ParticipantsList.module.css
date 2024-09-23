@@ -1,9 +1,3 @@
-.title {
-  margin-bottom: 36px;
-  font-size: 34px;
-  padding-left: 28px;
-}
-
 .participantsList {
   display: flex;
   gap: 20px;
