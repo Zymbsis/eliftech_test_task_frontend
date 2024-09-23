@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
 import EventsList from '../components/EventsList/EventsList.jsx';
 import Pagination from '../components/Pagination/Pagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage.jsx';
+import { fetchAllEvents } from '../services/fetchFunction.js';
+import { useFetch } from '../services/useFetch.js';
+import { useState } from 'react';
 
 const EventsBoardPage = () => {
-  const [eventsList, setEventsList] = useState([]);
-  const [paginationData, setPaginationData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [{ data, ...rest }, isLoading, isError] = useFetch(
+    fetchAllEvents,
+    currentPage,
+  );
 
   const getNextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -18,30 +20,6 @@ const EventsBoardPage = () => {
     setCurrentPage(currentPage - 1);
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-        const response = await fetch(
-          `https://eliftechtesttaskbackend-production.up.railway.app/events?perPage=6&page=${currentPage}`,
-        );
-        if (!response.ok) {
-          throw new Error('Something went wrong');
-        }
-        const { data } = await response.json();
-        setEventsList(data.data);
-        delete data.data;
-        setPaginationData(data);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setIsError(true);
-        console.log(error);
-      }
-    })();
-  }, [currentPage]);
-
   {
     if (isLoading) {
       return <Loader />;
@@ -49,12 +27,12 @@ const EventsBoardPage = () => {
     if (isError) {
       return <ErrorMessage />;
     }
-    if (eventsList.length) {
+    if (data?.length) {
       return (
         <>
-          <EventsList eventsList={eventsList} />
+          <EventsList eventsList={data} />
           <Pagination
-            paginationData={paginationData}
+            paginationData={rest}
             setCurrentPage={setCurrentPage}
             getNextPage={getNextPage}
             getPrevPage={getPrevPage}

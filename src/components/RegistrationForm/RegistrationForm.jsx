@@ -1,31 +1,14 @@
 import { useForm } from 'react-hook-form';
 import css from './RegistrationForm.module.css';
 import { toast } from 'react-toastify';
+import { addParticipant } from '../../services/fetchFunction.js';
 
 const RegistrationForm = ({ id }) => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (formData) => {
     try {
-      const response = await fetch(
-        // `http://localhost:3000/events/${id}`,
-        `https://eliftechtesttaskbackend-production.up.railway.app/events/${id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        },
-      );
-      if (!response.ok) {
-        throw new Error(
-          response.status === 409
-            ? 'You are already registered for this event'
-            : 'Something went wrong. Please try again',
-        );
-      }
-      const data = await response.json();
+      const data = await addParticipant(id, formData);
       console.log(data);
       toast.success('You have successfully registered for the event!');
       reset();
