@@ -24,4 +24,9 @@
   font-size: 18px;
   border-radius: 8px;
   border: 1px solid cadetblue;
+  transition: border-color 300ms ease-in;
+}
+
+.searchField:hover {
+  border-color: #4A7373;
 }
