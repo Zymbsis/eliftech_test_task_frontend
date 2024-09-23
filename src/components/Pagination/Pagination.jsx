@@ -1,14 +1,10 @@
-import { createPagination } from './createPagination.js';
+import { useEventContext, createPagination } from 'helpers';
 import css from './Pagination.module.css';
 
-const Pagination = ({
-  paginationData,
-  setCurrentPage,
-  getNextPage,
-  getPrevPage,
-}) => {
+const Pagination = ({ paginationData }) => {
   const { totalPages, page, hasNextPage, hasPrevPage } = paginationData;
   const paginationNav = createPagination(totalPages, page, 6);
+  const { getNextPage, getPrevPage, setCurrentPage } = useEventContext();
 
   return (
     <div className={css.paginationWrapper}>

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import Header from '../Header/Header.jsx';
 import Loader from '../Loader/Loader.jsx';
 import { Flip, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import css from './SharedLayout.module.css';
 
 const SharedLayout = ({ children }) => {

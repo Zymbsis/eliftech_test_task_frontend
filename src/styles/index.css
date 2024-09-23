@@ -1,4 +1,6 @@
 @import 'node_modules/modern-normalize/modern-normalize.css';
+@import 'flatpickr/dist/themes/material_green.css';
+@import 'react-toastify/dist/ReactToastify.css';
 @import url('./reset.css');
 
 :root {
@@ -21,6 +23,5 @@
 
 :root::-webkit-scrollbar-thumb {
   border-radius: 4px;
+  background-color: cadetblue;
 }
-
-:root::-webkit-scrollbar-track {}

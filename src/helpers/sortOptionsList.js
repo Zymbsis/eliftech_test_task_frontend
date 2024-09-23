@@ -1,4 +1,4 @@
-export const optionList = [
+export const sortOptionsList = [
   {
     value: { sortBy: 'event_date', sortOrder: 'desc' },
     label: 'Event date (Z to A)',

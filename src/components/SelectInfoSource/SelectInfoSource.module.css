@@ -1,0 +1,27 @@
+.fieldset > legend {
+  font-size: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.fieldset {
+  margin-bottom: 48px;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inputWrapper > input {
+  width: 25px;
+}
+
+.inputWrapper > label {
+  font-size: 18px;
+}
+
+.inputWrapper > label:not(:last-of-type) {
+  margin-right: 20px;
+}

@@ -1,10 +1,7 @@
 import EventCard from '../EventCard/EventCard.jsx';
 import css from './EventsList.module.css';
-import { formatDate } from './formatDate.js';
 
-const EventsList = ({ eventsList }) => {
-  const currentDate = formatDate(new Date(Date.now()));
-
+const EventsList = ({ eventsList, currentDate }) => {
   return (
     <ul className={css.eventsList}>
       {eventsList.map((event) => (

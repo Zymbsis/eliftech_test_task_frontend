@@ -1,3 +1,14 @@
+.wrapper {
+  display: flex;
+  margin-bottom: 36px;
+  justify-content: space-between;
+  padding: 0 28px;
+}
+
+.title {
+  font-size: 34px;
+}
+
 .select {
   width: 200px;
   height: 40px;

@@ -1,14 +1,19 @@
-import { useForm } from 'react-hook-form';
-import css from './RegistrationForm.module.css';
-import { toast } from 'react-toastify';
-import { addParticipant } from '../../services/fetchFunction.js';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { registrationSchema } from './validationSchema.js';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/material_green.css';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { addParticipant, registrationSchema } from 'helpers';
+import { yupResolver } from '@hookform/resolvers/yup';
+import SelectInfoSource from '../SelectInfoSource/SelectInfoSource.jsx';
+import DataPicker from '../DataPicker/DataPicker.jsx';
+import css from './RegistrationForm.module.css';
 
 const RegistrationForm = ({ id }) => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const onDateChange = (_, date) => {
+    setValue('dateOfBirth', date);
+    setSelectedDate(date);
+  };
+
   const {
     register,
     handleSubmit,
@@ -18,17 +23,19 @@ const RegistrationForm = ({ id }) => {
   } = useForm({
     resolver: yupResolver(registrationSchema),
   });
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
+    toast.dismiss();
     try {
-      await addParticipant(id, {
+      const promise = addParticipant(id, {
         ...formData,
         email: formData.email.toLowerCase(),
       });
-      toast.success('You have successfully registered for the event!');
+      toast.promise(promise, {
+        pending: 'Registration in progress, please wait...',
+        success: 'You have successfully registered for the event!',
+      });
+      await promise;
       reset();
       setSelectedDate(null);
     } catch (error) {
@@ -37,7 +44,7 @@ const RegistrationForm = ({ id }) => {
   };
 
   return (
-    <div className={css.registrationWrapper}>
+    <div className={css.formWrapper}>
       <h2>Event registration</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -62,53 +69,18 @@ const RegistrationForm = ({ id }) => {
             <span className={css.errorMessage}>{errors.email.message}</span>
           )}
         </label>
-        <label>
-          Date of birth
-          <Flatpickr
-            options={{ dateFormat: 'd-m-Y' }}
-            value={selectedDate}
-            onChange={(_, date) => {
-              setValue('dateOfBirth', date);
-              setSelectedDate(date);
-            }}>
-            <input
-              type='text'
-              value={selectedDate}
-              {...register('dateOfBirth')}
-            />
-          </Flatpickr>
+        <DataPicker
+          selectedDate={selectedDate}
+          register={register}
+          errors={errors}
+          onDateChange={onDateChange}>
           {errors.dateOfBirth && (
             <span className={css.errorMessage}>
               {errors.dateOfBirth.message}
             </span>
           )}
-        </label>
-        <fieldset>
-          <legend>Where did you hear about this event?</legend>
-          <div className={css.inputWrapper}>
-            <input
-              id='socialMedia'
-              type='radio'
-              value='Social media'
-              {...register('infoSource')}
-            />
-            <label htmlFor='socialMedia'>Social media</label>
-            <input
-              id='friends'
-              type='radio'
-              value='Friends'
-              {...register('infoSource')}
-            />
-            <label htmlFor='friends'>Friends</label>
-            <input
-              id='foundMyself'
-              type='radio'
-              value='Found myself'
-              {...register('infoSource')}
-            />
-            <label htmlFor='foundMyself'>Found myself</label>
-          </div>
-        </fieldset>
+        </DataPicker>
+        <SelectInfoSource register={register} />
         <button
           type='submit'
           className={css.submitBtn}>

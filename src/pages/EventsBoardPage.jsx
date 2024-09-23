@@ -1,63 +1,39 @@
+import { fetchAllEvents } from '../helpers/fetchFunctions.js';
+import { useFetch } from '../helpers/useFetch.js';
+import { useEventContext } from '../helpers/useContext.js';
+import Loader from '../components/Loader/Loader.jsx';
+import SortBar from '../components/SortBar/SortBar.jsx';
 import EventsList from '../components/EventsList/EventsList.jsx';
 import Pagination from '../components/Pagination/Pagination.jsx';
-import Loader from '../components/Loader/Loader.jsx';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage.jsx';
-import { fetchAllEvents } from '../services/fetchFunction.js';
-import { useFetch } from '../services/useFetch.js';
-import { useState } from 'react';
-import css from './EventPages.module.css';
-import SortBar from '../components/SortBar/SortBar.jsx';
+import { formatDate } from '../helpers/formatDate.js';
 
 const EventsBoardPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filters, setFilters] = useState({
-    sortBy: 'event_date',
-    sortOrder: 'desc',
-  });
-
+  const currentDate = formatDate(new Date(Date.now()));
+  const {
+    currentPage,
+    sortParams: { sortBy, sortOrder },
+  } = useEventContext();
   const [{ data, ...rest }, isLoading, isError] = useFetch(
     fetchAllEvents,
     currentPage,
-    filters.sortBy,
-    filters.sortOrder,
+    sortBy,
+    sortOrder,
   );
 
-  const getNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-  const getPrevPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  {
-    if (isLoading) {
-      return <Loader />;
-    }
-    if (isError) {
-      return <ErrorMessage />;
-    }
-    if (data?.length) {
-      return (
-        <>
-          <div className={css.wrapper}>
-            <h2 className={css.title}>Events</h2>
-            <SortBar
-              setFilters={setFilters}
-              setCurrentPage={setCurrentPage}
-              filters={filters}
-            />
-          </div>
-          <EventsList eventsList={data} />
-          <Pagination
-            paginationData={rest}
-            setCurrentPage={setCurrentPage}
-            getNextPage={getNextPage}
-            getPrevPage={getPrevPage}
-          />
-        </>
-      );
-    }
-  }
+  if (isLoading) return <Loader />;
+  if (isError) return <ErrorMessage />;
+  if (data?.length)
+    return (
+      <>
+        <SortBar />
+        <EventsList
+          eventsList={data}
+          currentDate={currentDate}
+        />
+        <Pagination paginationData={rest} />
+      </>
+    );
 };
 
 export default EventsBoardPage;

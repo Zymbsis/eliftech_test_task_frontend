@@ -1,19 +1,21 @@
-import { optionList } from './optionsList.js';
+import { useEventContext, sortOptionsList } from 'helpers';
 import css from './SortBar.module.css';
 
-const SortBar = ({ setFilters, setCurrentPage, filters }) => {
+const SortBar = () => {
+  const { setSortParams, setCurrentPage, sortParams } = useEventContext();
   const onChange = ({ target: { value } }) => {
-    setFilters(JSON.parse(value));
+    setSortParams(JSON.parse(value));
     setCurrentPage(1);
   };
 
   return (
-    <div>
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Events</h2>
       <select
         onChange={onChange}
-        value={JSON.stringify(filters)}
+        value={JSON.stringify(sortParams)}
         className={css.select}>
-        {optionList.map((option, index) => (
+        {sortOptionsList.map((option, index) => (
           <option
             key={index}
             value={JSON.stringify(option.value)}>
